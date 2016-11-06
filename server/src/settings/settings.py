@@ -28,14 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 mimetypes.add_type("text/css", ".css", True)
-print "this shud work!"
 # Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.authentication',
@@ -115,7 +113,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 
-print BASE_DIR
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static/templates/css'),
@@ -133,8 +130,12 @@ TEMPLATE_DIRS = (
 )
 
 REST_FRAMEWORK = {
+    #TODO change default authentication classes
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
     )
 }
 

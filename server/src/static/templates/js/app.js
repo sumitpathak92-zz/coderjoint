@@ -61,20 +61,20 @@
                 $scope.contacts.push($scope.contact);
                 $scope.contact = "";
             }
-            $scope.login = function(uname, pword) {
-                console.log("loogging in ", uname, pword);
+            $scope.login = function(email, pword) {
+                console.log("loogging in ", email, pword);
                 var form_obj = new FormData();
-                form_obj.append(uname, pword);
+                form_obj.append(email, pword);
 
                 ApiRequest.sendRequest({
                     requestType: 'POST',
                     requestUrl: '/api/v1/auth/login/',
                     requestData: {
-                        username: uname,
+                        email: email,
                         password: pword
                     }
                 }).then(function (result){
-                    console.log("data sent");
+                    console.log("data sent", result);
                 })
             }
         }]);

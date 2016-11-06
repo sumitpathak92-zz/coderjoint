@@ -22,7 +22,6 @@ class UserAccountViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
-
         if serializer.is_valid():
             UserAccount.objects.create_user(**serializer.validated_data)
             return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
@@ -35,16 +34,16 @@ class UserAccountViewSet(viewsets.ModelViewSet):
 
 class LoginView(views.APIView):
     def post(self, request, format=None):
+        print "here"
         data = json.loads(request.body)
-        username = data.get('username', None)
+        email = data.get('email', None)
         password = data.get('password', None)
-        account = authenticate(username=username, password=password)
+        account = authenticate(email=email, password=password)
+        print account
         if account is not None:
             if account.is_active:
                 login(request, account)
-
                 serialized = UserAccountSerializer(account)
-
                 return Response(serialized.data)
             else:
                 return Response({
