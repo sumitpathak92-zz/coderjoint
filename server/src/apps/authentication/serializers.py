@@ -1,15 +1,15 @@
 from django.contrib.auth import update_session_auth_hash
 from rest_framework import serializers
-from authentication.models import UserAccount
+from apps.authentication.models import UserAccount
 
 class UserAccountSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
 
     class Meta:
-        model=Account
+        model=UserAccount
         fields = ('id', 'email', 'username', 'joined_on', 'profile_last_updated', 
-                 'first_name', 'last_name', 'password', 'confirm_password'
+                 'first_name', 'last_name', 'password', 'confirm_password',
                  'about_me', 'status', 'exp_type',)
         read_only_fields = ('joined_on', 'profile_last_updated', )
         
