@@ -10,7 +10,6 @@ class UserAccountViewSet(viewsets.ModelViewSet):
     lookup_field = 'username'
     queryset = UserAccount.objects.all()
     serializer_class = UserAccountSerializer
-
     def get_permission(self):
         if self.request.method in permissions.SAFE_METHOD:
             return (permissions.AllowAny(), )
@@ -21,8 +20,10 @@ class UserAccountViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(), IsAccountOwner(), )
 
     def create(self, request):
+        print "requested", request.data
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
+            print "serialixer", serializer.validated_data
             UserAccount.objects.create_user(**serializer.validated_data)
             return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 

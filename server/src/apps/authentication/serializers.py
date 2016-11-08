@@ -3,6 +3,8 @@ from rest_framework import serializers
 from apps.authentication.models import UserAccount
 
 class UserAccountSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(max_length=40)
+    email = serializers.EmailField()
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
 

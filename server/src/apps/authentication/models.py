@@ -31,11 +31,11 @@ class UserAccountManager(BaseUserManager):
 class UserAccount(AbstractBaseUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
+    first_name = models.CharField(max_length=20, blank=True)
+    last_name = models.CharField(max_length=20,blank=True)
     about_me = models.CharField(max_length=100, blank=True)
     status = models.CharField(max_length=50, blank=True)
-    exp_type = models.CharField(max_length=10, blank=False)
+    exp_type = models.CharField(max_length=10, blank=True)
 
     joined_on = models.DateTimeField(auto_now_add=True)
     profile_last_updated = models.DateTimeField(auto_now=True)

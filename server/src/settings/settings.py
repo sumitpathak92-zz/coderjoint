@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sessions',
     'apps.authentication',
     'apps.posts',
     'rest_framework',
@@ -80,20 +81,14 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'coderjoint',
-        'USER': 'coderjoint_user',
-        'PASSWORD': 'newpassword',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR+'/db.sqlite3',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '',
     }
 }
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-   #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
-#}
 
 
 # Internationalization

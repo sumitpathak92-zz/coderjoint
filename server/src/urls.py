@@ -6,7 +6,7 @@ from settings.views import IndexView
 from apps.posts.views import AccountPostsViewSet, PostViewSet
 
 router = routers.SimpleRouter()
-router.register(r'accounts', AccountPostsViewSet)
+router.register(r'accounts', UserAccountViewSet)
 router.register(r'posts', PostViewSet)
 
 accounts_router = routers.NestedSimpleRouter(
@@ -19,7 +19,7 @@ urlpatterns = patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/', include(router.urls)),
-    url(r'^api/v1/', include(accounts_router.urls)),
+    #url(r'^api/v1/', include(accounts_router.urls)),
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
 
